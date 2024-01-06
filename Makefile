@@ -1,18 +1,18 @@
-# Development environment setup and apply
+# Development environment setup and apply file
 dev:
 	@rm -rf .terraform
 	@git pull
 	@terraform init -backend-config=env-dev/state.tfvars
 	@terraform apply -auto-approve -var-file=env-dev/main.tfvars
 
-# Development environment destroy
+# Development environment destroy file
 dev-destroy:
 	@rm -rf .terraform
 	@git pull
 	@terraform init -backend-config=env-dev/state.tfvars
 	@terraform destroy -auto-approve -var-file=env-dev/main.tfvars
 
-# Production environment setup and apply
+# Production environment setup and apply file
 prod:
 	@rm -rf .terraform
 	@git pull
