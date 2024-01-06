@@ -37,3 +37,11 @@ component = {
   }
 
 }
+
+tags = {
+  company_name = "XYZ Tech"
+  business = "ecommerce"
+  business_unit = "retail"
+  cost_center = "322"
+  project_name = "roboshop"
+}
