@@ -23,7 +23,7 @@ module "app_server" {
 }
 
 module "rabbitmq" {
-  source      = "git::https://github.com/balusena/tf-module-rabbitmq.git"
+  source         = "git::https://github.com/balusena/tf-module-rabbitmq.git"
 
   for_each       = var.rabbitmq
   component      = each.value["component"]
@@ -52,6 +52,6 @@ module "rds" {
 
   tags           = var.tags
   env            = var.env
-  kms_key_arn     = var.kms_key_arn
+  kms_key_arn    = var.kms_key_arn
 }
 
