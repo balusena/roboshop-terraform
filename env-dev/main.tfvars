@@ -36,11 +36,17 @@ rabbitmq = {
 
 rds = {
   main = {
-    component        = "mysql"
+    component        = "rds"
     engine           = "aurora-mysql"
     engine_version   = "5.7.mysql_aurora.2.11.3"
     db_name          = "dummy"
     instance_count   = 1
     instance_class   = "db.t3.small"
+  }
+}
+
+documentdb = {
+  main = {
+    component        = "docdb"
   }
 }
