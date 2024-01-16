@@ -128,8 +128,9 @@ module "apps" {
   subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
   vpc_id    = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
 
-  env        = var.env
-  tags       = var.tags
-  kms_key_id = var.kms_key_arn
+  env            = var.env
+  tags           = var.tags
+  kms_key_id     = var.kms_key_arn
+  allow_ssh_cidr = var.allow_ssh_cidr
 }
 
