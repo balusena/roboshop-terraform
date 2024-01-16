@@ -113,3 +113,24 @@ module "alb" {
   tags = var.tags
 }
 
+module "apps" {
+  source    = "git::https://github.com/balusena/tf-module-app.git"
+
+  for_each  = var.apps
+  app_port  = each.value["app_port"]
+  desired_capacity = each.value["desired_capacity"]
+  instance_type = each.value["instance_type"]
+  min_size = each.value["min_size"]
+  max_size = each.value["max_size"]
+  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), each.value["subnet_ref"], null), "cidr_block", null)
+
+  component = each.value["component"]
+  subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnets_ref"], null), "subnet_ids", null)
+  vpc_id    = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+
+
+  env        = var.env
+  tags       = var.tags
+  kms_key_id = var.kms_key_arn
+}
+
