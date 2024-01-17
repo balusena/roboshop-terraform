@@ -27,7 +27,7 @@ module "rabbitmq" {
   tags           = var.tags
   allow_ssh_cidr = var.allow_ssh_cidr
   zone_id        = var.zone_id
-  kms_key_id     = var.kms_key_id
+  kms_key_arn     = var.kms_key_arn
 }
 
 module "rds" {
@@ -111,7 +111,8 @@ module "apps" {
   instance_type = each.value["instance_type"]
   min_size = each.value["min_size"]
   max_size = each.value["max_size"]
-  sg_subnets_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), each.value["subnet_ref"], null), "cidr_block", null)
+  sg_subnets_cidr = each.value["component"] == "frontend" ? local.public_web_subnet_cidr : lookup(lookup(lookup(lookup(var.vpc, "main", null),
+    "subnets", null), each.value["subnet_ref"], null), "cidr_block", null)
 
   component = each.value["component"]
   subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
