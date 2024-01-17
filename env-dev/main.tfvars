@@ -147,7 +147,7 @@ apps = {
     min_size         = 1
     max_size         = 1
     subnet_ref       = "web"
-    lb_ref           = "private"
+    lb_ref           = "public"
     lb_rule_priority = 100
   }
 }
