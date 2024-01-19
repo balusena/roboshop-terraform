@@ -93,7 +93,7 @@ apps = {
     max_size         = 1
     subnet_ref       = "app"
     lb_ref           = "private"
-    lb_rule_priority = 101
+    lb_rule_priority = 100
   }
   catalogue = {
     component        = "catalogue"
@@ -104,7 +104,8 @@ apps = {
     max_size         = 1
     subnet_ref       = "app"
     lb_ref           = "private"
-    lb_rule_priority = 102
+    lb_rule_priority = 101
+    extra_param_access = ["arn:aws:ssm:us-east-1:828448425071:parameter/roboshop.dev.docdb.*"]
   }
   user= {
     component        = "user"
@@ -115,7 +116,8 @@ apps = {
     max_size         = 1
     subnet_ref       = "app"
     lb_ref           = "private"
-    lb_rule_priority = 103
+    lb_rule_priority = 102
+    extra_param_access = ["arn:aws:ssm:us-east-1:828448425071:parameter/roboshop.dev.docdb.*"]
   }
   shipping = {
     component        = "shipping"
@@ -126,7 +128,7 @@ apps = {
     max_size         = 1
     subnet_ref       = "app"
     lb_ref           = "private"
-    lb_rule_priority = 104
+    lb_rule_priority = 103
   }
   payment = {
     component        = "payment"
@@ -137,7 +139,7 @@ apps = {
     max_size         = 1
     subnet_ref       = "app"
     lb_ref           = "private"
-    lb_rule_priority = 105
+    lb_rule_priority = 104
   }
   frontend = {
     component        = "frontend"
