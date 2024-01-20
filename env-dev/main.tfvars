@@ -26,7 +26,7 @@ allow_ssh_cidr = ["172.31.40.26/32"]
 zone_id        = "Z09157091J32F5PJ5K67Y"
 kms_key_id     = "62bb771a-341f-4c82-b8d9-473959a4a166"
 kms_key_arn    = "arn:aws:kms:us-east-1:828448425071:key/62bb771a-341f-4c82-b8d9-473959a4a166"
-allow_prometheus_cidr = ["172.31.39.61"]
+allow_prometheus_cidr = ["172.31.39.61/32"]
 
 rabbitmq = {
   main = {
