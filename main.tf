@@ -137,6 +137,10 @@ module "eks" {
 
   for_each       = var.eks
   subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  min_size       = each.value["min_size"]
+  max_size       = each.value["max_size"]
   env            = var.env
+  capacity_type  = each.value["capacity_type"]
+  instance_types = each.value["instance_types"]
 }
 
