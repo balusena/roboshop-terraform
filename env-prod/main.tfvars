@@ -155,3 +155,9 @@ apps = {
     lb_rule_priority = 100
   }
 }
+
+eks = {
+  main = {
+    subnet_ref       = "app"
+  }
+}
