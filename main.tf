@@ -136,7 +136,7 @@ module "eks" {
   source = "git::https://github.com/balusena/tf-module-eks.git"
 
   for_each       = var.eks
-  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null),
+  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
   env            = var.env
 }
 
