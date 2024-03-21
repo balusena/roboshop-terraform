@@ -162,6 +162,6 @@ eks = {
     min_size       = 2
     max_size       = 2
     capacity_type  = "SPOT"
-    instance_types = ["t3.2xlarge"]
+    instance_types = ["t3.medium", "t3.large", "t3.xlarge", "t3.2xlarge"]
   }
 }
