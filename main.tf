@@ -50,15 +50,15 @@ module "rds" {
 }
 
 module "documentdb" {
-  source         = "git::https://github.com/balusena/tf-module-documentdb.git"
+  source  = "git::https://github.com/balusena/tf-module-documentdb.git"
 
-  for_each       = var.documentdb
-  component      = each.value["component"]
-  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
-  vpc_id         = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
-  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
-  engine         = each.value["engine"]
-  engine_version = each.value["engine_version"]
+  for_each          = var.documentdb
+  component         = each.value["component"]
+  subnet_ids        = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  vpc_id            = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  sg_subnet_cidr    = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
+  engine            = each.value["engine"]
+  engine_version    = each.value["engine_version"]
   db_instance_count = each.value["db_instance_count"]
   instance_class    = each.value["instance_class"]
 
@@ -70,17 +70,17 @@ module "documentdb" {
 module "elasticache" {
   source         = "git::https://github.com/balusena/tf-module-elasticache.git"
 
-  for_each       = var.elasticache
-  component      = each.value["component"]
-  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
-  engine         = each.value["engine"]
-  engine_version = each.value["engine_version"]
+  for_each                = var.elasticache
+  component               = each.value["component"]
+  subnet_ids              = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  engine                  = each.value["engine"]
+  engine_version          = each.value["engine_version"]
   replicas_per_node_group = each.value["replicas_per_node_group"]
   num_node_groups         = each.value["num_node_groups"]
-  vpc_id         = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
-  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
-  node_type      = each.value["node_type"]
-  parameter_group_name = each.value["parameter_group_name"]
+  vpc_id                  = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  sg_subnet_cidr          = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
+  node_type               = each.value["node_type"]
+  parameter_group_name    = each.value["parameter_group_name"]
 
   tags           = var.tags
   env            = var.env
@@ -136,7 +136,7 @@ module "eks" {
   source = "git::https://github.com/balusena/tf-module-eks.git"
 
   for_each       = var.eks
-  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  subnet_ids     = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
   min_size       = each.value["min_size"]
   max_size       = each.value["max_size"]
   env            = var.env
