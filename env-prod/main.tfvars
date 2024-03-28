@@ -159,9 +159,9 @@ apps = {
 eks = {
   main = {
     subnet_ref       = "app"
-    min_size       = 6
-    max_size       = 6
+    min_size       = 3
+    max_size       = 3
     capacity_type  = "SPOT"
-    instance_types = ["t3.large", "t3.xlarge", "t3.2xlarge"]
+    instance_types = ["t3.2xlarge"]
   }
 }
